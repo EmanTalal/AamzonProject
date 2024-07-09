@@ -49,6 +49,7 @@ function Login() {
                             <p class="mt-2 cursor-pointer text-blue-500 hover:text-blue-600">Forgot password?</p>
                         </div>
                         <div class="flex flex-col gap-2">
+                            <Link to='/App'>
                             <button type="submit" onClick={haund}
                                 class="border transition-colors focus:ring-2 p-0.5 disabled:cursor-not-allowed border-transparent bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white disabled:bg-gray-300 disabled:text-gray-700 rounded-lg ">
                                 <span
@@ -56,6 +57,7 @@ function Login() {
                                     Login
                                 </span>
                             </button>
+                            </Link>
                             <button type="button"
                                 class="transition-colors focus:ring-2 p-0.5 disabled:cursor-not-allowed bg-white hover:bg-gray-100 text-gray-900 border border-gray-200 disabled:bg-gray-300 disabled:text-gray-700 rounded-lg ">
                                 <span

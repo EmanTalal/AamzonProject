@@ -20,6 +20,10 @@ const router = createBrowserRouter([
     path: '/Cart',
     element: <Cart />,
   },
+  {
+    path: '/App',
+    element: <App/>,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
