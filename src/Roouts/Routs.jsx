@@ -5,7 +5,8 @@ import App from './App';
 import './index.css';
 import ProductPage from './pages/ProductPage';
 import Cart from './pages/Cart';
-import Login from '../pages/Login';
+import Login from './pages/Login';
+import Sinup from './pages/Sinup';
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
     element: <Cart />,
   },
   {
+    path: '/Sinup',
+    element: <Sinup />,
+  },
+  {
     path: '/App',
-    element: <App/>,
+    element: <App />,
   },
 ]);
 
