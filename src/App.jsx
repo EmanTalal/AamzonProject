@@ -152,7 +152,7 @@ function App() {
                 <div className="card-actions justify-end">
                   <Link to={'/ProductPage'}>
                     <button className="btn btn-warning text-black">
-                      View Details
+                      View Detailsss
                     </button>
                   </Link>
                 </div>
