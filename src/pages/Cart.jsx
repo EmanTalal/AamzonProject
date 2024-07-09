@@ -10,7 +10,7 @@ function Cart() {
         <div className="w-[70%] bg-white flex justify-center">
           <div className="">
             <div className="card bg-white w-fit shadow-xl ">
-              <h1 className="ml-5 text-2xl text-black">Shopping Cart</h1>
+              <h1 className="ml-5 text-2xl text-black">Shopping Carts</h1>
               <hr />
               <br />
               <figure className="h-52">
