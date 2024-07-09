@@ -8,12 +8,8 @@ function Sinup() {
     const Navgite=useNavigate()
 
     const vaildEmail=(email)=>{
-        if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-            return false;
-    
-    else
-    {    return true;
-    }
+        if(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+            return ;
 }
 
     const hundel =()=>{
@@ -74,7 +70,7 @@ function Sinup() {
                 </div>
 
                 <div>
-                    <Link to='/Login'>
+                    <Link to='/'>
                     <button type="submit" onClick={hundel}
                         class="flex w-full justify-center rounded-md border border-transparent bg-sky-400 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-opacity-75 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-2">Register
                         Account
