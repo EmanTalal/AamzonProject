@@ -39,7 +39,7 @@ function Cart() {
                 <h2 className="card-title">Subtotal (2 items): $109</h2>
                 <div className="card-actions justify-end">
                   <button className="btn btn-warning">
-                    Proceed to checkout
+                    Proceed to checkout dd
                   </button>
                 </div>
               </div>
