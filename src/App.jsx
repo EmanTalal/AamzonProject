@@ -4,7 +4,7 @@ import Footer1 from './component/Footer1';
 import Footer2 from './component/Footer2';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import Routs from './Roouts/Routs'
 function App() {
   // const [products, setProducts] = useState([]);
   // const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +31,11 @@ function App() {
   // );
 
   return (
-    <></>
+    <>
+    
+    <Routs></Routs>
+    
+    </>
     // <>
   //     <div className="navbar bg-base-100 text-white">
   //       <div className="navbar-start">
