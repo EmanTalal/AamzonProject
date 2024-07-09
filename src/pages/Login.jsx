@@ -1,12 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
-    const[username,setUsername]=useState('')
-    const [password,setPassword]=useState('')
+    const[emailuser,setEmailuser]=useState('')
+    const [passworduser,setPassworduser]=useState('')
+    const navigate=useNavigate();
+
+    const haund=()=>{
+        if(localStorage.getItem("email")== emailuser && localStorage.getItem('password')==passworduser){
+            navigate('/')
+        }
+    }
   return (
-    <div>Login</div>
+    <></>
+
   )
 }
 
