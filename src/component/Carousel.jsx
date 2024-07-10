@@ -1,64 +1,31 @@
 function Carousel() {
   return (
     <>
-      <div className="carousel w-full">
-        <div id="slide1" className="carousel-item relative w-full">
+      <div class="relative w-full h-[320px]" id="home">
+        <div class="absolute inset-0 opacity-70">
           <img
-            src="https://m.media-amazon.com/images/I/61q5Pg3hO8L._SX3000_.jpg"
-            className="w-full h-80"
+            src="https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="Background Image"
+            class="object-cover object-center w-full h-full"
           />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
+        </div>
+        <div class="absolute inset-9 flex flex-col md:flex-row items-center justify-between">
+          <div class="md:w-1/2 mb-4 md:mb-0">
+            <h1 class="text-black font-medium text-4xl md:text-5xl leading-tight mb-2">
+              Bappa Flour mill
+            </h1>
+            <p class="font-regular text-black text-xl mb-8 mt-4">
+              One stop solution for flour grinding services
+            </p>
+            {/* <a
+              href="#contactUs"
+              class="px-6 py-3 bg-[#c8a876] text-white font-medium rounded-full hover:bg-[#c09858]  transition duration-200"
+            >
+              Contact Us
+            </a> */}
           </div>
         </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img
-            src="https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg"
-            className="w-full h-80"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide3" className="carousel-item relative w-full">
-          <img
-            src="https://m.media-amazon.com/images/I/61CiqVTRBEL._SX3000_.jpg"
-            className="w-full h-80"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide2" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide4" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-        <div id="slide4" className="carousel-item relative w-full">
-          <img
-            src="https://m.media-amazon.com/images/I/71Ie3JXGfVL._SX3000_.jpg"
-            className="w-full h-80"
-          />
-          <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-            <a href="#slide3" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide1" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-      </div>{' '}
+      </div>
     </>
   );
 }

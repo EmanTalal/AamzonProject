@@ -6,18 +6,17 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from './redux/cartSlice';
-import OurServises from './component/OurServises';
-import WhyUs from './component/WhyUs';
-import AboutUs from './component/AboutUs';
 
-function App() {
+
+function Home() {
+  
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
 
   const fetch = async () => {
-    const response = await axios.get('https://dummyjson.com/products');
+    const response = await axios.get("https://dummyjson.com/products");
     const filteredProducts = response.data.products.filter(
       (product) => product.images && product.images.length > 0
     );
@@ -27,6 +26,7 @@ function App() {
   useEffect(() => {
     fetch();
   }, []);
+
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -38,11 +38,11 @@ function App() {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     // alert("item added to cart ");
-  };
+  };
 
   return (
     <>
-      <div className="navbar bg-base-100 text-white sticky top-0 z-10">
+      <div className="navbar bg-base-100 text-white">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -107,12 +107,29 @@ function App() {
               </select>
             </li>
             <li></li>
-            <Link to="/Login">
-              <li className="btn text-white">Logout</li>
-            </Link>
+            <li>
+              <div className="dropdown dropdown-hover">
+                <div tabIndex={0} role="button" className="">
+                  <p>Hello, sign in</p>
+                  <p>Account & List</p>
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 mt-32 shadow"
+                >
+                  <li>
+                    <a>Item 1</a>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                </ul>{' '}
+              </div>
+            </li>
+            <li className="btn text-white">Return & Orders</li>
 
             <li className="btn text-white">
-              <Link to={'/Cart'}>
+            <Link to={"/Cart"}>
                 <img
                   src="https://img.icons8.com/?size=100&id=0DBkCUANmgoQ&format=png&color=FFFFFF"
                   alt=""
@@ -129,59 +146,39 @@ function App() {
       </div>
       {/* ================================== */}
 
-      <div className="bg-slate-200 flex flex-wrap gap-4 justify-center">
+      <div className="bg-slate-300 flex flex-wrap gap-4 justify-center">
         <Carousel></Carousel>
-        <OurServises />
-        <div className="flex flex-wrap justify-center gap-6">
+
+        <div className="grid grid-cols-3    gap-4">
           {filterProducts.map((product) => (
             <div
+              className="card lg:card-side bg-white shadow-xl text-black"
               key={product.id}
-              class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
             >
               {product.images && product.images.length > 0 ? (
                 <div>
-                  <Link to={`/ProductPage/${product.id}`}>
+                  <figure>
                     <img
                       src={product.images}
-                      alt="Product"
-                      class="h-80 w-72 object-cover rounded-t-xl"
-                    />{' '}
-                  </Link>
+                      alt="Album"
+                      className="p-2 h-40 object-contain"
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{product.title}</h2>
+                    <p className="text-xl">{product.price} $</p>
 
-                  <div class="px-4 py-3 w-72">
-                    <span class="text-gray-400 mr-3 uppercase text-xs">
-                      {product.brand}
-                    </span>
-                    <p class="text-lg font-bold text-black truncate block capitalize">
-                      {product.title}
-                    </p>
-                    <div class="flex items-center">
-                      <p class="text-lg font-semibold text-black cursor-auto my-3">
-                        {product.price}{' '}
-                      </p>
-                      <del>
-                        <p class="text-sm text-gray-600 cursor-auto ml-2">
-                          $199
-                        </p>
-                      </del>
+                    <div className="card-actions items-center justify-end">
+                      <Link to={`/ProductPage/${product.id}`}>
+                        <button className="btn btn-warning text-black">
+                          View Details
+                        </button>
+                      </Link>
                       <button
-                        className="ml-auto btn btn-warning text-black"
+                        className="btn btn-warning text-black"
                         onClick={() => handleAddToCart(product)}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="currentColor"
-                          class="bi bi-bag-plus"
-                          viewBox="0 0 16 16"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                          />
-                          <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                        </svg>
+                        Add to Cart
                       </button>
                     </div>
                   </div>
@@ -192,18 +189,16 @@ function App() {
             </div>
           ))}
         </div>
-        {/* ============================================== */}
-        <AboutUs />
-        <WhyUs />
+        {/* ===========================================
+      =========================================== */}
       </div>
 
       {/* ===========================================
       =========================================== */}
-
       <Footer1></Footer1>
       <Footer2 />
     </>
   );
 }
 
-export default App;
+export default Home;

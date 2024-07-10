@@ -1,59 +1,83 @@
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Nav from '../component/Nav';
 import Footer1 from '../component/Footer1';
 import Footer2 from '../component/Footer2';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/cartSlice';
+import axios from 'axios';
 
 function ProductPage() {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `https://dummyjson.com/products/${id}`
+        );
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  const handleAddToCart = () => {
+    if (!product) return;
+    const { id, title, price, images } = product;
+    dispatch(addToCart({ id, title, price, images, quantity: 1 }));
+    alert('Item added to cart');
+  };
+
+  if (!product) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
-      <Nav></Nav>
-      {/*container */}
-      <div
-        className="flex bg-white justify-between h-screen
-       max-sm:flex max-sm:flex-col max-sm:justify-center
-       max-md:flex max-md:flex-col max-md:justify-center"
-      >
-        <div className="card lg:card-side bg-white shadow-xl w-full h-fit break-words">
-          <figure>
-            <img
-              src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-              alt="Album"
-              className="h-80 w-full"
-            />
-          </figure>
-          <div className="card-body w-56">
-            <h2 className="card-title text-black">
-              Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
-            </h2>
-            <h2 className="card-title text-black">
-              Rating:{' '}
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/019/859/726/small/yellow-five-stars-quality-rating-icons-5-stars-icon-five-star-sign-rating-symbol-transparent-background-illustration-png.png"
-                alt=""
-                className="h-7"
-              />
-            </h2>
-            <p className="text-black ">
-              3D NAND flash are applied to deliver high transfer speeds
-              Remarkable transfer speeds that enable faster bootup and improved
-              overall system performance. The advanced SLC Cache Technology
-              allows performance boost and longer lifespan 7mm slim design
-              suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM
-              command, Garbage Collection technology, RAID, and ECC (Error
-              Checking & Correction) to provide the optimized performance and
-              enhanced reliability..
-            </p>
-          </div>
-        </div>
-
-        {/* ====================================== */}
-        <div>
-          <div className="card card-side bg-white shadow-xl h-full w-80">
-            <div className="card-body">
-              <h2 className="card-title text-black">$ 109</h2>
+      <Nav />
+      {/* ================================== */}
+      <div class="bg-white py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col md:flex-row -mx-4">
+            <div class="md:flex-1 px-4">
+              <div class="h-[460px] rounded-lg bg-gray-300 dark:bg-gray-700 mb-4">
+                <img
+                  class="w-full h-full object-cover"
+                  src={product.images}
+                  alt="Product Image"
+                />
+              </div>
+              <div class="flex -mx-2 mb-4">
+                <div class="w-1/2 px-2">
+                  <button
+                    onClick={handleAddToCart}
+                    class="btn btn-warning w-full py-2 px-4 rounded-full font-bold hover:bg-yellow-600"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+                <div class="w-1/2 px-2">
+                  <Link to={'/Cart'}>
+                    <button className=" btn w-full border-0 bg-orange-500 py-2 px-4 rounded-full font-bold hover:bg-orange-700 text-black">
+                      Buy Now
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div class="md:flex-1 px-4">
+              <h2 class="text-2xl font-bold text-black mb-2">
+                {product.title}
+              </h2>
               <div className="dropdown dropdown-hover">
-                <div tabIndex={0} role="button" className=" bg-white">
-                  <p className="text-blue-600"> FREE International Returns</p>
+                <div tabIndex={0} role="button" className="">
+                  <p className="text-blue-600">FREE International Returns</p>
                 </div>
                 <ul
                   tabIndex={0}
@@ -61,7 +85,7 @@ function ProductPage() {
                 >
                   <li>
                     <a className="text-black">
-                      Return this item for free Free returns are available for
+                      Return this item for free. Free returns are available for
                       the shipping address you chose. You can return the item
                       for any reason in new and unused condition: no return
                       shipping charges. Learn more about free returns. How to
@@ -70,28 +94,34 @@ function ProductPage() {
                   </li>
                 </ul>
               </div>
-              <p className=" text-black h-1 max-sm:hidden max-md:hidden">
-                $23.05 Shipping & Import Charges to Saudi Arabia Details
-                <br />
-              </p>
-              <p className=" text-black">
-                Delivery Thursday, July 18. Order within 23 hrs 48 mins Or
-                fastest delivery Wednesday, July 17
-              </p>
-              <div className="card-actions justify-end">
-                <Link to={'/Cart'}>
-                  <button className="btn btn-warning">Add to Cart</button>
-                </Link>
-                <button className="btn bg-orange-500 border-0 text-black">
-                  Buy Now
-                </button>
+              <div class="flex mb-4">
+                <div class="mr-4">
+                  <span class="font-bold text-black">
+                    Price: ${product.price}
+                  </span>
+                </div>
+                <div>
+                  <span class="font-bold text-black">Availability:</span>
+                  <span class="text-black">In Stock</span>
+                </div>
+              </div>
+
+              <div>
+                <span class="font-bold text-black">Product Description:</span>
+                <p class="text-black text-sm mt-2">{product.description}</p>
+                <h2 className="text-black">
+                  <br />
+                  Rating: {product.rating} Out of 5
+                </h2>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <Footer1></Footer1>
-      <Footer2></Footer2>
+      {/* ================================== */}
+
+      <Footer1 />
+      <Footer2 />
     </>
   );
 }

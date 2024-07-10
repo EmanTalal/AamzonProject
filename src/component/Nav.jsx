@@ -1,6 +1,8 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 function Nav() {
+  const cart = useSelector((state) => state.cart);
   return (
     <>
       <div className="navbar bg-base-100 text-white">
@@ -70,20 +72,19 @@ function Nav() {
             <li>
               <div className="dropdown dropdown-hover">
                 <div tabIndex={0} role="button" className="">
-                  <p>Hello, sign in</p>
                   <p>Account & List</p>
                 </div>
               </div>
             </li>
             <li className="btn text-white">Return & Orders</li>
-            <li className="btn text-white">
+            <li className="btn  text-white">
               <Link to={'/Cart'}>
                 <img
                   src="https://img.icons8.com/?size=100&id=0DBkCUANmgoQ&format=png&color=FFFFFF"
                   alt=""
                   className="h-10"
                 />
-                Cart
+                <h3 className="text-red-300">{cart.length}</h3>
               </Link>
             </li>
           </ul>
